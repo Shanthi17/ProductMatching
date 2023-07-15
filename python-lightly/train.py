@@ -14,15 +14,28 @@ from lightly.data import LightlyDataset
 from lightly.transforms import SimCLRTransform, utils
 
 from models.simclr import SimCLRModel
+import argparse
+
+parser = argparse.ArgumentParser(description='PyTorch SimCLR')
+parser.add_argument('--data', metavar='DIR', required=True, help='path to dataset')
+parser.add_argument('--epochs', default=200, type=int, metavar='N',
+                    help='number of total epochs to run')
+parser.add_argument('-b', '--batch-size', default=256, type=int,
+                    metavar='N',
+                    help='mini-batch size (default: 256), this is the total '
+                         'batch size of all GPUs on the current node when '
+                         'using Data Parallel or Distributed Data Parallel')
+
+args = parser.parse_args()
 
 num_workers = 8
-batch_size = 256
+batch_size = args.batch_size
 seed = 1
-max_epochs = 20
+max_epochs = args.epochs
 input_size = 128
 num_ftrs = 32
 
-path_to_data = "/home/ashutosh/Shanthi/dataset"
+path_to_data = args.data
 
 transform = SimCLRTransform(input_size=input_size, vf_prob=0.5, rr_prob=0.5)
 

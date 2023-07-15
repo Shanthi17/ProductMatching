@@ -76,8 +76,6 @@ dataloader_test = torch.utils.data.DataLoader(
 model = SimCLRModel()
 trainer = pl.Trainer(max_epochs=max_epochs, devices=1, accelerator="gpu")
 
-
-simsiam.eval()
 lr_monitor = LearningRateMonitor(logging_interval="step")
 model_checkpoint = ModelCheckpoint(save_last=True, save_top_k=1, monitor="train_loss")
 callbacks = [model_checkpoint, lr_monitor]

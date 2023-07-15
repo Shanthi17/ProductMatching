@@ -9,7 +9,8 @@ import torchvision
 from PIL import Image
 from sklearn.neighbors import NearestNeighbors
 from sklearn.preprocessing import normalize
-
+from pytorch_lightning.loggers import TensorBoardLogger
+from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
 from lightly.data import LightlyDataset
 from lightly.transforms import SimCLRTransform, utils
 

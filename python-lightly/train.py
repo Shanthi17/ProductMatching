@@ -81,7 +81,7 @@ lr_monitor = LearningRateMonitor(logging_interval="step")
 model_checkpoint = ModelCheckpoint(save_last=True, save_top_k=1, monitor="train_loss")
 callbacks = [model_checkpoint, lr_monitor]
 
-tb_logger = TensorBoardLogger('tb_logs', name='simsiam_tb_logs')
+tb_logger = TensorBoardLogger('tb_logs', name='simclr_tb_logs')
 trainer = pl.Trainer(
     max_epochs = max_epochs,
     accelerator = 'gpu',

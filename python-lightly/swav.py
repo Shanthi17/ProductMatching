@@ -56,6 +56,7 @@ class SwaV(pl.LightningModule):
         high_resolution = multi_crop_features[:2]
         low_resolution = multi_crop_features[2:]
         loss = self.criterion(high_resolution, low_resolution)
+        self.log('train_loss', loss, on_epoch=True, prog_bar=True)
         return loss
 
     def configure_optimizers(self):

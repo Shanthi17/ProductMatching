@@ -2,6 +2,7 @@ import torch
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 import matplotlib.pyplot as plt
+# from models.resnet_simclr import ResNetSimCLR
 import matplotlib.cm as cm
 import argparse
 import os
@@ -19,6 +20,11 @@ dataset, dataloader, idx_to_class = load_dataset.dataset(args.data)
 
 
 # Model Loading
+# model = ResNetSimCLR(base_model='resnet18', out_dim=128).to(device)
+# checkpoint = torch.load(args.checkpoint, map_location=device)
+# state_dict = checkpoint['state_dict']  
+# log = model.load_state_dict(state_dict, strict=False)
+
 model = torch.hub.load('facebookresearch/dino:main', 'dino_vits8')
 # model = torch.hub.load('facebookresearch/swav:main', 'resnet50')
 

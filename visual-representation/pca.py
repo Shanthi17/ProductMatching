@@ -1,45 +1,23 @@
 import torch
-from torchvision import datasets, transforms
-from torch.utils.data import Subset
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
-from models.resnet_simclr import ResNetSimCLR
-import numpy as np
+# from models.resnet_simclr import ResNetSimCLR
 import matplotlib.cm as cm
 import argparse
 import os
-from utils import forward
+from utils import forward, load_dataset
 
 parser = argparse.ArgumentParser(description='PyTorch SimCLR')
 parser.add_argument('--data', metavar='DIR', default='./sub_dataset', help='path to dataset')
-parser.add_argument('--checkpoint', help='trained model checkpoint', required=True)
+# parser.add_argument('--checkpoint', help='trained model checkpoint', required=True)
 parser.add_argument('--filename', help='pca filename', required=True)
 args = parser.parse_args()
 
-## Generic transform to apply on images - resize to 224, 244 and convert to tensor
-transform = transforms.Compose([
-    transforms.Resize((224, 224)),
-    transforms.ToTensor(),
-])
-
-# Load the dataset
-dataset = datasets.ImageFolder(args.data, transform=transform)
-dataloader = torch.utils.data.DataLoader(dataset, batch_size=1, shuffle=False)
-
-# selected_folder_names = [d for d in os.listdir(args.data) if len(os.listdir(os.path.join(args.data, d)))>=5]
-
-# subset_indices = []
-# for idx, (image, label) in enumerate(dataset):
-#     if dataset.classes[label] in selected_folder_names:
-#         subset_indices.append(idx)
-
-# subset_dataset = Subset(dataset, subset_indices)
+# Data Loading
+dataset, dataloader, idx_to_class = load_dataset.dataset(args.data)
 
 
-# Get class to index dictionary - later used for plot in PCA and Reverse the class-to-index mapping to get index-to-class mapping
-class_to_idx = dataset.class_to_idx
-idx_to_class = {idx: class_name for class_name, idx in class_to_idx.items()}
-
+# Model Loading
 # model = ResNetSimCLR(base_model='resnet18', out_dim=128).to(device)
 # checkpoint = torch.load(args.checkpoint, map_location=device)
 # state_dict = checkpoint['state_dict']  
@@ -48,6 +26,7 @@ idx_to_class = {idx: class_name for class_name, idx in class_to_idx.items()}
 # model = torch.hub.load('facebookresearch/dino:main', 'dino_vits8')
 model = torch.hub.load('facebookresearch/swav:main', 'resnet50')
 
+# Extract feature vectors
 feature_vectors, labels = forward.get_features_labels(dataloader, model)
 
 # Load PCA with 2 components and fit the feature vectors
@@ -73,6 +52,6 @@ plt.xlabel('Principal Component 1')
 plt.ylabel('Principal Component 2')
 plt.title('2D PCA Map of Image Feature Vectors')
 
-save_path = os.path.join('pca', f"{args.filename}.png")
+save_path = os.path.join('results/pca', f"{args.filename}.png")
 plt.savefig(save_path)
 plt.close()

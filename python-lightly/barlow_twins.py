@@ -32,10 +32,10 @@ args = parser.parse_args()
 class BarlowTwins(pl.LightningModule):
     def __init__(self):
         super().__init__()
-        resnet = torchvision.models.resnet18(pretrained=True)
+        resnet = torchvision.models.resnet18()
         # Freeze the weights
-        for param in resnet.parameters():
-            param.requires_grad = False
+        # for param in resnet.parameters():
+        #     param.requires_grad = False
         self.backbone = nn.Sequential(*list(resnet.children())[:-1])
         self.projection_head = BarlowTwinsProjectionHead(512, 2048, 2048)
         self.criterion = BarlowTwinsLoss()

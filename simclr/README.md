@@ -15,9 +15,54 @@ Later, I finetuned the original pre-trained model with ResNet50 as base model. T
 ## Testing:
 
 For model testing purposes, I randomly selected an image, computed its similarity with all other images, and then selected the top 5 closest matches. Here are some samples of the test results.
+
 ![Sample-1](new_results/simclr_1.0_cosine/figure_33751.png)
-![Sample-1](new_results/simclr_1.0_cosine/figure_5669.png)
+![Sample-2](new_results/simclr_1.0_cosine/figure_5669.png)
+
 Though, the results look quite promising in the above images. There are few cases where the model failed to identify similar images correctly. Here are some examples.
+
+![Sample-3](new_results/simclr_1.0_cosine/figure_20843.png)
+![Sample-4](new_results/simclr_1.0_cosine/figure_42185.png)
+
+The outcomes demonstrate that while the model doesn't provide identical products, it is capable of recognizing products with a similar appearance, such as bottles in the initial example.
+
+## Deductions:
+1. In our scenario, SimCLR is not yielding the desired outcomes, potentially due to the extensive number of classes, approximately 15,000, and the resemblances between various products depicted in these images.
+2. Observing that SimCLR successfully discerns product patterns, we could consider employing it to ascertain the broader category of a product. For instance, for a product like Cheerios, its higher-level category could be identified as cereals.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

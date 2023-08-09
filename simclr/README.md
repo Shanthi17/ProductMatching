@@ -9,6 +9,11 @@ Updated the code to train Simclr model on custom dataset as the existing code is
 To understand the working of SimCLR better, I started off with training the model on 200 random classes. Below, are the training loss curve and the accuracy curve are as below.
 ![Accuracy curve for 200 classes for 200 epochs](images/200class_acc_curve.png?raw=true)
 
+Later, I finetuned the original pre-trained model with ResNet50 as base model. The accuracy curve for this is as below.
+![Accuracy curve for 15269 classes for 200 epochs](images/allclass_acc_curve.png?raw=true)
+
+For model testing purposes, I randomly selected an image, computed its similarity with all other images, and then selected the top 5 closest matches. Here are some samples of the test results.
+
 
 ------
 ## PyTorch SimCLR: A Simple Framework for Contrastive Learning of Visual Representations

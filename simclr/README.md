@@ -1,4 +1,17 @@
-# PyTorch SimCLR: A Simple Framework for Contrastive Learning of Visual Representations
+# Retraining SimCLR model on custom dataset
+I cloned an existing github repository for SimCLR by sthalles - ![Github repository link](https://github.com/sthalles/SimCLR.git)
+
+Updated the code to train Simclr model on custom dataset as the existing code is designed to train models on CIFAR/STL10.
+
+### Dataset: Custom grocery dataset has 15269 classes 
+
+## Experiments:
+To understand the working of SimCLR better, I started off with training the model on 200 random classes. Below, are the training loss curve and the accuracy curve are as below.
+![Accuracy curve for 200 classes for 200 epochs](images/200class_acc_curve.png?raw=true)
+
+
+------
+## PyTorch SimCLR: A Simple Framework for Contrastive Learning of Visual Representations
 [![DOI](https://zenodo.org/badge/241184407.svg)](https://zenodo.org/badge/latestdoi/241184407)
 
 

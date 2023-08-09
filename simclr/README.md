@@ -12,6 +12,8 @@ To understand the working of SimCLR better, I started off with training the mode
 Later, I finetuned the original pre-trained model with ResNet50 as base model. The accuracy curve for this is as below.
 ![Accuracy curve for 15269 classes for 200 epochs](images/allclass_acc_curve.png?raw=true)
 
+## Testing:
+
 For model testing purposes, I randomly selected an image, computed its similarity with all other images, and then selected the top 5 closest matches. Here are some samples of the test results.
 
 

@@ -15,6 +15,10 @@ Later, I finetuned the original pre-trained model with ResNet50 as base model. T
 ## Testing:
 
 For model testing purposes, I randomly selected an image, computed its similarity with all other images, and then selected the top 5 closest matches. Here are some samples of the test results.
+![Sample-1](new_results/simclr_1.0_cosine/figure_33751.png)
+![Sample-1](new_results/simclr_1.0_cosine/figure_5669.png)
+Though, the results look quite promising in the above images. There are few cases where the model failed to identify similar images correctly. Here are some examples.
+
 
 
 ------

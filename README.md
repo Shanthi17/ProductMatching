@@ -5,7 +5,7 @@ This repository contains code for different experiments run and their test resul
 2. Randomly sampling few images to find its nearest matches from the test set.
 3. Used lightly-ai, which is a computer vision framework for self-supervised learning, to train SwAV model on custom dataset and analyzed its performance.
 4. Randomly selected 15 classes to understand the distribution of feature vectors on 2D plane using PCA
-5. Created 7 top-level categories to understand if the products are forming clusters in 2D plane using pCA and t-SNE.
+5. Created 7 top-level categories to understand if the products are forming clusters in 2D plane using PCA and t-SNE.
 
 ## About:
 - As a part of my independent study for 2023, I worked with Shivendra Agrawal who is currently working towards developing a smartcane to help visually impaired and blind people to guide them in grocery shopping. 
@@ -60,6 +60,30 @@ Videos:
 - Observing that SimCLR successfully discerns product patterns, we could consider employing it to ascertain the broader category of a product. For instance, for a product like Cheerios, its higher-level category could be identified as cereals.
 
 ## Using PCA to plot samples on 2D plane:
+Plotted feature vectors of samples from randomly sampled 15 classes in the dataset from SimCLR, SwAV and DINO using PCA. Below are the results.
+PCA plot of test dataset with Simclr model with Resnet-50
+![PCA plot with SimCLR model](images/pca_simclr_test.png)
+
+PCA plot of test dataset with SwAV pretrained model
+![PCA plot of SwAV model](images/pca_swav_test.png)
+
+PCA plot of test dataset with DINO model
+![PCA plot of DINO model](images/pca_dino_test.png)
+
+From, the above plot we can see that DINO is creating few clusters for classes. To further understand, I plotted the samples with DINO model using t-SNE visualization and below if the plot.
+![t-SNE plot of DINO model](images/dino_test_tsne.png)
 
 
-## Clustering of top level categories with PCA and t-SNE:
+## Clustering of top-level categories with PCA and t-SNE:
+- Given a scenario where the person is trying to identify in which section of the shop he/she is present, if we can find the top-level category of the products given the products present in the image it will be useful.
+- To work the above scenario, I created 7 top-level categories namely bakery-items, canned-food, cereals, chips, sauce, condiments, soda. I manually added the products from the existing classes to top-level category classes.
+- As DINO was performing the best in the before scenario, we demonstrated the formation of clusters using DINO on top-level category dataset.
+- Here is the plot showing the same
+![PCA plot for top-level](images/dino_toplevel.png)
+![t-SNE plot for top-level](images/dino_toplevel_tsne.png)
+
+## Future work:
+- During my independent study, I completely worked on the custom dataset and used few images taken to check how the models are working in trying to find the match. But, I did not test variety of classes or different angles or used others perspective. I feel doing these would give robustness to our model.
+- In top-level clustering of the products, I used images from the custom dataset. As an extention to this, we could test it in real time with images taken in real-time.
+- I created only 7 top-level categories with no more than 10 images in each class. So, extending the dataset will help understand the working of the models better.
+- Do research on how identifying top-level categories can help the person localize himself.

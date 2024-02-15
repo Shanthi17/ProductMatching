@@ -1,4 +1,4 @@
-# Shelfhelp
+# Product Matching - Shelfhelp
 
 This repository contains code for different experiments run and their test results in visual representation learning. Here are the list of things which will be elaborated further below.
 1. Training SimCLR with ResNet50 as base model on custom dataset.
